@@ -12,6 +12,10 @@ const attendantSchema = new Schema({
   foodChoice: {
     type: String,
     required: true,
+  },
+  rsvp: {
+    type: Number,
+    default: 0
   }
 });
 

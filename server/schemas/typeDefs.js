@@ -9,11 +9,17 @@ const typeDefs = gql`
     wedding: [Wedding]
   }
 
+  type Meal {
+    _id: ID
+    name: String
+  }
+
   type Attendant{
     _id: ID
     firstName: String
     lastName: String
     foodChoice: String
+    rsvp: Number
   }
 
   type Wedding {
@@ -23,6 +29,7 @@ const typeDefs = gql`
     groom: String
     attendants: [Attendant]
     location: String
+    meals: [Meal]
   }
 
   type Auth {
