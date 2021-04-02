@@ -22,7 +22,13 @@ const weddingSchema = new Schema({
   location:{
       type: String,
       required: true,
-  }
+  },
+  meals: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Meal'
+    }
+  ],  
 });
 
 const Wedding = model('Wedding', weddingSchema);
