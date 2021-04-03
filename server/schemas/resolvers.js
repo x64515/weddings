@@ -6,27 +6,36 @@ const resolvers = {
   Query: {
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate('wedding');
+        const user = await User.findById(context.user._id).populate({
+          path: 'wedding',
+          populate: 'meals',
+          populate: 'attendants'
+        });
 
         return user;
       }
 
       throw new AuthenticationError('Not logged in');
     },
-    wedding: async (parent, context) =>{
+    wedding: async (parent, {_id}, context) =>{
       if(context.user){
         const user = await User.findById(context.user._id).populate('wedding');
 
-        return user.wedding.populate('attendants').populate('meals');
+        return user.wedding;
+      }
+      else{
+        const user = await User.findById(_id).populate('wedding');
+
+        return user.wedding;
       }
     },
-    meals: async (parent, {_id}, context) => {
-      const user = await User.findById(context.user._id).populate({
-        path: 'wedding',
-        populate: 'meals'
-      })
+    // meals: async (parent, {_id}) =>{
+    //   const wedding = await Wedding.findOne(_id).populate('Meal');
 
-      return user.wedding.meals;
+    //   return wedding.meals;
+    // },
+    meals: async () => {
+      return await Meal.find();
     }
   },
   Mutation: {
@@ -61,9 +70,9 @@ const resolvers = {
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
-      if (!user) {
-        throw new AuthenticationError('Incorrect credentials');
-      }
+       if (!user) {
+         throw new AuthenticationError('Incorrect credentials');
+       }
 
       const correctPw = await user.isCorrectPassword(password);
 
@@ -73,7 +82,7 @@ const resolvers = {
 
       const token = signToken(user);
 
-      return { token, user };
+      return {  token, user };
     }
   }
 };
