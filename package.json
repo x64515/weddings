@@ -14,9 +14,19 @@
   "license": "ISC",
   "dependencies": {
     "graphql": "^15.5.0",
-    "if-env": "^1.0.4"
+    "if-env": "^1.0.4",
+    "react": "^17.0.2"
   },
   "devDependencies": {
     "concurrently": "^5.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frecklescherokee/weddings.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/frecklescherokee/weddings/issues"
+  },
+  "homepage": "https://github.com/frecklescherokee/weddings#readme"
 }

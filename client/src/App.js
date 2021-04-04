@@ -1,46 +1,48 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ApolloProvider } from '@apollo/react-hooks';
-import ApolloClient from 'apollo-boost';
-import { StoreProvider } from './utils/GlobalState'
-
-import Header from './components/Header';
-import BookList from './pages/BookList';
-import Detail from './pages/Detail';
-
-const client = new ApolloClient({
-  uri: '/graphql'
-});
+import React, { useState } from "react";
+import Nav from "./components/Nav";
+import HomePage from "./components/HomePage";
+import Gallery from "./components/Gallery";
+import ContactForm from "./components/Contact";
+import HomePage from "./components/HomePage";
 
 function App() {
-  const [currentBook, setCurrentBook] = useState('');
+  const [categories] = useState([
+    {
+      name: "home page",
+      description: "home page ",
+    },
+    { name: "guest portal", description: "RSVP" },
+    { name: "Wedding Details", description: "date location groom bride etc" },
+    {
+      name: "landscape",
+      description: "Fields, farmhouses, waterfalls, and the beauty of nature",
+    },
+  ]);
+
+  const [currentCategory, setCurrentCategory] = useState(categories[0]);
+
+  const [contactSelected, setContactSelected] = useState(false);
 
   return (
-    <ApolloProvider client={client}>
-      <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
-          <StoreProvider>
-          <Header currentBook={currentBook} />
-          <div className="container">
-            <Switch>
-              <Route exact path="/" component={BookList} />
-              <Route
-                exact
-                path="/book/:bookId"
-                component={() => (
-                  <Detail
-                    setCurrentBook={setCurrentBook}
-                    currentBook={currentBook}
-                  />
-                )}
-              />
-              <Route render={() => <h1>404! Wrong Page</h1>} />
-            </Switch>
-          </div>
-          </StoreProvider>
-        </div>
-      </Router>
-    </ApolloProvider>
+    <div>
+      <Nav
+        categories={categories}
+        setCurrentCategory={setCurrentCategory}
+        currentCategory={currentCategory}
+        contactSelected={contactSelected}
+        setContactSelected={setContactSelected}
+      ></Nav>
+      <main>
+        {!contactSelected ? (
+          <>
+            <Gallery currentCategory={currentCategory}></Gallery>
+            <HomePage></HomePage>
+          </>
+        ) : (
+          <ContactForm></ContactForm>
+        )}
+      </main>
+    </div>
   );
 }
 
