@@ -16,7 +16,7 @@ const weddingSchema = new Schema({
   attendants: [
     {
     type: Schema.Types.ObjectId,
-    ref: 'Attendant'
+    ref: 'attendants'
     }
   ],
   location:{
@@ -26,7 +26,7 @@ const weddingSchema = new Schema({
   meals: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Meal'
+      ref: 'meals'
     }
   ],  
 });

@@ -83,6 +83,12 @@ db.once('open', async () => {
 
     console.log('wedding seeded');
 
+    await User.deleteMany({}, (err)=>{
+        if(err){
+            console.log(err);
+        }
+    });
+
     await User.create({
         firstName: 'Beyonce',
         lastName: 'Knowles',
