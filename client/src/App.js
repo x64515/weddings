@@ -8,7 +8,7 @@ import HomePage from "./components/HomePage";
 function App() {
   const [categories] = useState([
     {
-      name: "home page",
+      name: "HomePage",
       description: "home page ",
     },
     { name: "guest portal", description: "RSVP" },
