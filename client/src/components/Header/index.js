@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { capitalizeFirstLetter } from "../../utils/helpers";
 
-function Nav(props) {
+function Header(props) {
   const {
     categories = [],
     setCurrentCategory,
@@ -63,4 +63,4 @@ function Nav(props) {
   );
 }
 
-export default Nav;
+export default Header;

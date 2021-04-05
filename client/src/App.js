@@ -1,48 +1,51 @@
-import React, { useState } from "react";
-import Nav from "./components/Nav";
-import HomePage from "./components/HomePage";
-import Gallery from "./components/Gallery";
-import ContactForm from "./components/Contact";
-import HomePage from "./components/HomePage";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ApolloProvider } from "@apollo/react-hooks";
+import ApolloClient from "apollo-boost";
+
+// import Header from './components/Header';
+// import Footer from './components/Footer';
+
+import Home from "./pages/HomePage";
+// import Login from './pages/Login';
+// import NoMatch from './pages/NoMatch';
+// import SingleThought from './pages/SingleThought';
+// import Profile from './pages/Profile';
+// import Signup from './pages/Signup';
+
+const client = new ApolloClient({
+  request: (operation) => {
+    const token = localStorage.getItem("id_token");
+
+    operation.setContext({
+      headers: {
+        authorization: token ? `Bearer ${token}` : "",
+      },
+    });
+  },
+  uri: "/graphql",
+});
 
 function App() {
-  const [categories] = useState([
-    {
-      name: "HomePage",
-      description: "home page ",
-    },
-    { name: "guest portal", description: "RSVP" },
-    { name: "Wedding Details", description: "date location groom bride etc" },
-    {
-      name: "landscape",
-      description: "Fields, farmhouses, waterfalls, and the beauty of nature",
-    },
-  ]);
-
-  const [currentCategory, setCurrentCategory] = useState(categories[0]);
-
-  const [contactSelected, setContactSelected] = useState(false);
-
   return (
-    <div>
-      <Nav
-        categories={categories}
-        setCurrentCategory={setCurrentCategory}
-        currentCategory={currentCategory}
-        contactSelected={contactSelected}
-        setContactSelected={setContactSelected}
-      ></Nav>
-      <main>
-        {!contactSelected ? (
-          <>
-            <Gallery currentCategory={currentCategory}></Gallery>
-            <HomePage></HomePage>
-          </>
-        ) : (
-          <ContactForm></ContactForm>
-        )}
-      </main>
-    </div>
+    <ApolloProvider client={client}>
+      <Router>
+        <div className="flex-column justify-flex-start min-100-vh">
+          <Header />
+          <div className="container">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/profile/:username?" component={Profile} />
+              <Route exact path="/thought/:id" component={SingleThought} /> */}
+              <Route component={NoMatch} />
+            </Switch>
+          </div>
+          <Footer />
+        </div>
+      </Router>
+    </ApolloProvider>
   );
 }
 
