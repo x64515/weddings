@@ -6,37 +6,26 @@ const resolvers = {
   Query: {
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'wedding',
-          populate: 'meals',
-          populate: 'attendants'
-        });
+        const user = await User.findById(context.user._id);
 
         return user;
       }
 
       throw new AuthenticationError('Not logged in');
     },
-    wedding: async (parent, {_id}, context) =>{
-      if(context.user){
-        const user = await User.findById(context.user._id).populate('wedding');
+    wedding: async (parent, {_id}) =>{
+      
+      const wedding = await Wedding.findById(_id);
 
-        return user.wedding;
-      }
-      else{
-        const user = await User.findById(_id).populate('wedding');
-
-        return user.wedding;
-      }
+      return wedding;
+  
     },
-    // meals: async (parent, {_id}) =>{
-    //   const wedding = await Wedding.findOne(_id).populate('Meal');
+    meals: async (parent, {_id}) =>{
+      const wedding = await Wedding.findById(_id);
 
-    //   return wedding.meals;
-    // },
-    meals: async () => {
-      return await Meal.find();
-    }
+      return wedding.meals;
+    },
+    
   },
   Mutation: {
     addUser: async (parent, args) => {
