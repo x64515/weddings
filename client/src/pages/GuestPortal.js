@@ -4,10 +4,9 @@ import { validateEmail } from "../utils/helpers";
 
 function GuestPortal() {
   const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    message: "",
-    menu: "not selected",
+    firstName: "",
+    lastName: "",
+    foodChoice: "not selected",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -63,18 +62,15 @@ function GuestPortal() {
             onBlur={handleChange}
           />
         </div>
-      
-        {/* <div>
-          <label>
-            Pick your meal:
-            <select value={this.state.value} onChange={this.handleChange}>
-              <option value="grapefruit">Grapefruit</option>
-              <option value="lime">Lime</option>
-              <option value="coconut">Coconut</option>
-              <option value="mango">Mango</option>
-            </select>
-          </label>
-        </div> */}
+        <div>
+          <label htmlFor="foodChoice">Meal:</label>
+          <input
+            type="text"
+            name="foodChoice"
+            defaultValue={name}
+            onBlur={handleChange}
+          />
+        </div>
         <div>
           <label htmlFor="object">Do you object?</label>
         </div>

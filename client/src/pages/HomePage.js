@@ -12,7 +12,7 @@ function HomePage() {
         alt="cover"
       /> */}
       <div className="my-2">
-        <Link to="/guestportal">GuestPortal</Link>
+        <Link to="/guestportal">Guest Portal</Link>
         <Link to="/signup">Signup</Link> 
       </div>
     </section>
