@@ -1,11 +1,90 @@
-const { Book } = require('../models');
+const { AuthenticationError } = require('apollo-server-express');
+const { User, Wedding, Attendant, Meal } = require('../models');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    books: async () => {
-      return await Book.find();
+    user: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate({
+          path: 'wedding',
+          populate: 'meals',
+          populate: 'attendants'
+        });
+
+        return user;
+      }
+
+      throw new AuthenticationError('Not logged in');
     },
+    wedding: async (parent, {_id}, context) =>{
+      if(context.user){
+        const user = await User.findById(context.user._id).populate('wedding');
+
+        return user.wedding;
+      }
+      else{
+        const user = await User.findById(_id).populate('wedding');
+
+        return user.wedding;
+      }
+    },
+    // meals: async (parent, {_id}) =>{
+    //   const wedding = await Wedding.findOne(_id).populate('Meal');
+
+    //   return wedding.meals;
+    // },
+    meals: async () => {
+      return await Meal.find();
+    }
   },
+  Mutation: {
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+
+      return { token, user };
+    },
+    addAttendant: async (parent, args, context) => {
+      console.log(context);
+      if (context.user) {
+        const guest = await Attendant.create(args);
+
+        await User.findByIdAndUpdate(context.user._id, { $push: { attendants: guest } });
+
+        return guest;
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+    addMeal: async(parent, args, context) => {
+      console.log(context);
+      if (context.user) {
+        const item = await Meal.create(args);
+
+        await Wedding.findByIdAndUpdate(context.user._id, { $push: { meals: item } });
+
+        return item;
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+       if (!user) {
+         throw new AuthenticationError('Incorrect credentials');
+       }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const token = signToken(user);
+
+      return {  token, user };
+    }
+  }
 };
 
 module.exports = resolvers;
