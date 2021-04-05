@@ -11,7 +11,8 @@ import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
 // import SingleThought from './pages/SingleThought';
 // import Profile from './pages/Profile';
-import Signup from "./pages/GuestPortal";
+import Signup from "./pages/Signup";
+import GuestPortal from "./pages/GuestPortal"
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -37,7 +38,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
-
+              <Route exact path="/guestportal" component={GuestPortal} />
               <Route component={NoMatch} />
             </Switch>
           </div>

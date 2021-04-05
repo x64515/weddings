@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { validateEmail } from "../utils/helpers";
 
-function ContactForm() {
+function GuestPortal() {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -90,4 +90,4 @@ function ContactForm() {
   );
 }
 
-export default ContactForm;
+export default GuestPortal;
