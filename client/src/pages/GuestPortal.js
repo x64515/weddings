@@ -7,6 +7,7 @@ function ContactForm() {
     name: "",
     email: "",
     message: "",
+    menu: "not selected",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -62,6 +63,17 @@ function ContactForm() {
             onBlur={handleChange}
           />
         </div>
+        {/* <div>
+          <label>
+            Pick your meal:
+            <select value={this.state.value} onChange={this.handleChange}>
+              <option value="grapefruit">Grapefruit</option>
+              <option value="lime">Lime</option>
+              <option value="coconut">Coconut</option>
+              <option value="mango">Mango</option>
+            </select>
+          </label>
+        </div> */}
         <div>
           <label htmlFor="object">Do you object?</label>
         </div>
