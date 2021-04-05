@@ -46,7 +46,7 @@ function GuestPortal() {
       <h1 data-testid="h1tag">Contact me</h1>
       <form id="RSVP" onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">First Name:</label>
           <input
             type="text"
             name="name"
@@ -55,14 +55,15 @@ function GuestPortal() {
           />
         </div>
         <div>
-          <label htmlFor="email">Email address:</label>
+          <label htmlFor="name">Last Name:</label>
           <input
-            type="email"
-            name="email"
-            defaultValue={email}
+            type="text"
+            name="name"
+            defaultValue={name}
             onBlur={handleChange}
           />
         </div>
+      
         {/* <div>
           <label>
             Pick your meal:
