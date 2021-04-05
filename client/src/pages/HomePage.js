@@ -1,9 +1,9 @@
 import React from "react";
-import coverImage from "../assets/cover/cover-image.jpg";
+import coverImage from "../assets/cover/cover-image.jfif";
 function HomePage() {
   return (
     <section className="my-5">
-      <h1 id="HomePage">My Wedding</h1>
+      {/* <h1 id="HomePage">My Wedding</h1> */}
       <img
         src={coverImage}
         className="my-2"
