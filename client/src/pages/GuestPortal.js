@@ -42,7 +42,7 @@ function GuestPortal() {
 
   return (
     <section>
-      <h1 data-testid="h1tag">Contact me</h1>
+      <h1 data-testid="h1tag">Will you be attending?</h1>
       <form id="RSVP" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">First Name:</label>
