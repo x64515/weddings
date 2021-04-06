@@ -10,7 +10,7 @@ function GuestPortal() {
   });
 
   const [errorMessage, setErrorMessage] = useState("");
-  const { name, email } = formState;
+  const { firstName, lastName, foodChoice } = formState;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,7 +49,7 @@ function GuestPortal() {
           <input
             type="text"
             name="name"
-            defaultValue={name}
+            defaultValue={firstName}
             onBlur={handleChange}
           />
         </div>
@@ -58,7 +58,7 @@ function GuestPortal() {
           <input
             type="text"
             name="name"
-            defaultValue={name}
+            defaultValue={lastName}
             onBlur={handleChange}
           />
         </div>
@@ -67,7 +67,7 @@ function GuestPortal() {
           <input
             type="text"
             name="foodChoice"
-            defaultValue={name}
+            defaultValue={foodChoice}
             onBlur={handleChange}
           />
         </div>
