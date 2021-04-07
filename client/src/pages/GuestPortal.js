@@ -4,13 +4,14 @@ import React, { useState } from "react";
 
 function GuestPortal() {
   const [formState, setFormState] = useState({
+    wedding: "not selected",
     firstName: "",
     lastName: "",
     foodChoice: "not selected",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
-  const { firstName, lastName, foodChoice } = formState;
+  const { wedding, firstName, lastName, foodChoice } = formState;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,6 +45,15 @@ function GuestPortal() {
     <section className="flex-row justify-center mb-4">
       <h1 data-testid="h1tag">Will you be attending?</h1>
       <form id="RSVP" onSubmit={handleSubmit}>
+        <div className="my-2">
+          <label htmlFor="wedding">Event?</label>
+          <select defaultValue={wedding} name="wedding" onBlur={handleChange}>
+            <option value="Selena Gomez">Selena Gomez</option>
+            <option value="beyonce">beyonce</option>
+            <option value="Rick James">Rick James</option>
+            <option value="Justin Bieber">Justin Bieber</option>
+          </select>
+        </div>
         <div className="my-2">
           <label htmlFor="name">First Name:</label>
           <input
