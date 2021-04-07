@@ -50,6 +50,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addAttendant(firstName: String!, lastName: String!, foodChoice: String!): Attendant
     updateUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    addWedding(weddingDate: String!,bride: String!,groom: String, location: String): Wedding
   }
 `;
 
