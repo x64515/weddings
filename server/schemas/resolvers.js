@@ -56,6 +56,16 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
+    addWedding: async(parent, args, context) => {
+      console.log(context);
+      if(context.user){
+        const newWedding = await Wedding.create(args);
+
+        await User.findByIdAndUpdate(context.user._id, { $push: { wedding: newWedding} });
+
+        return newWedding;
+      }
+    },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
