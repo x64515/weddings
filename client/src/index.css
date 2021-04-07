@@ -193,6 +193,13 @@ textarea {
   margin-right: auto;
 }
 
+.body-container {
+  width: 100%;
+  height: 80vh;
+  background-size: cover;
+  background-position: center;
+}
+
 .flex-row {
   display: flex;
   justify-content: space-between;

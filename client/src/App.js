@@ -34,7 +34,7 @@ function App() {
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
           <Header />
-          <div className="container">
+          <div className="body-container">
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
