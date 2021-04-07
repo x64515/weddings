@@ -1,5 +1,6 @@
 import gql from "graphql-tag";
 
+<<<<<<< HEAD
 // export const QUERY_THOUGHTS = gql`
 //   query thoughts($username: String) {
 //     thoughts(username: $username) {
@@ -36,65 +37,60 @@ import gql from "graphql-tag";
 //   }
 // `;
 
+=======
+>>>>>>> 702e6cb4c8c63684374e99ab836a65009f7f8763
 export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
+  query user($_id: ID!) {
+    user(_id: $_id) {
       _id
-      username
+      firstName
+      lastName
       email
-      friendCount
-      friends {
+      wedding{
         _id
-        username
-      }
-      thoughts {
-        _id
-        thoughtText
-        createdAt
-        reactionCount
-      }
-    }
-  }
-`;
-
-export const QUERY_ME = gql`
-  {
-    me {
-      _id
-      username
-      email
-      friendCount
-      thoughts {
-        _id
-        thoughtText
-        createdAt
-        reactionCount
-        reactions {
+        weddingDate
+        bride
+        groom
+        location
+        meals{
           _id
-          createdAt
-          reactionBody
-          username
+          name
+        }
+        attendants{
+          _id
+          firstName
         }
       }
-      friends {
-        _id
-        username
-      }
+  }
+  }
+}
+`;
+
+export const QUERY_WEDDING = gql`
+  query wedding($_id:ID!){
+    wedding(_id: $_id){
+    _id
+    weddingDate
+    bride
+    groom
+    attendants{
+      firstName
+      lastName
+      rsvp
+      foodChoice
     }
+    meals{
+      name
+    }
+    }  
   }
 `;
 
-export const QUERY_ME_BASIC = gql`
-  {
-    me {
+export const QUERY_MEALS = gql`
+  query meals($_id:ID!){
+    meals(_id: $_id){
       _id
-      username
-      email
-      friendCount
-      friends {
-        _id
-        username
-      }
+      name
     }
   }
 `;

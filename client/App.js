@@ -12,6 +12,7 @@ import NoMatch from './pages/NoMatch';
 import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
+import WeddingDetails from '.pages/WeddingDetails';
 
 const client = new ApolloClient({
   request: operation => {
@@ -37,6 +38,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
+              <Route exact path="/weddingdetails" component={WeddingDetails} />
               <Route component={NoMatch} />
             </Switch>
           </div>
