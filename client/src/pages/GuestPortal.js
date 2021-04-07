@@ -20,7 +20,7 @@ function GuestPortal() {
   };
 
   const handleChange = (e) => {
-    if (e.target.name === "firstName") {
+    if (e.target.name === "name") {
       // const isValid = validateEmail(e.target.value);
       //   if (!isValid) {
       //     setErrorMessage("Your email is invalid.");
@@ -41,7 +41,7 @@ function GuestPortal() {
   };
 
   return (
-    <section>
+    <section className="flex-row justify-center mb-4">
       <h1 data-testid="h1tag">Will you be attending?</h1>
       <form id="RSVP" onSubmit={handleSubmit}>
         <div className="my-2">
