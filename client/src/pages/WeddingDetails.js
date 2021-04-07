@@ -104,7 +104,7 @@ const WeddingDetails = props => {
          <button className="btn d-block w-100" type="submit">
                 Submit
               </button>
-            
+  
           
           </form>
     </div>
