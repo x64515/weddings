@@ -1,4 +1,5 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
+
 
 export const QUERY_USER = gql`
   query user($_id: ID!) {
