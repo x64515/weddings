@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 const Wedding = require('./Wedding');
 
+
 const userSchema = new Schema({
   firstName: {
     type: String,

@@ -19,7 +19,7 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     foodChoice: String
-    rsvp: Number
+    rsvp: Float
   }
 
   type Wedding {
@@ -38,13 +38,14 @@ const typeDefs = gql`
   }
 
   type Query {
-    attendants: [Attendant]
-    attendant(_id: ID!): Attendant
+    meal(_id: ID!): Meal
+    meals(_id: ID!): [Meal]
     user: User
     wedding(_id: ID!): Wedding
   }
 
   type Mutation{
+    addMeal(name: String!): Meal
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addAttendant(firstName: String!, lastName: String!, foodChoice: String!): Attendant

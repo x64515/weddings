@@ -1,4 +1,6 @@
 const { Schema, model } = require('mongoose');
+const Meal = require('./Meal');
+const Attendant = require('./Attendant');
 
 const weddingSchema = new Schema({
   weddingDate: {
@@ -13,22 +15,12 @@ const weddingSchema = new Schema({
     type: String,
     required: true,
   },
-  attendants: [
-    {
-    type: Schema.Types.ObjectId,
-    ref: 'Attendant'
-    }
-  ],
+  attendants: [Attendant.schema],
   location:{
       type: String,
       required: true,
   },
-  meals: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Meal'
-    }
-  ],  
+  meals: [Meal.schema],  
 });
 
 const Wedding = model('Wedding', weddingSchema);

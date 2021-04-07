@@ -1,43 +1,52 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ApolloProvider } from '@apollo/react-hooks';
-import ApolloClient from 'apollo-boost';
-import { StoreProvider } from './utils/GlobalState'
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ApolloProvider } from "@apollo/react-hooks";
+import ApolloClient from "apollo-boost";
 
-import Header from './components/Header';
-import BookList from './pages/BookList';
-import Detail from './pages/Detail';
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+import Home from "./pages/HomePage";
+import Login from "./pages/Login";
+import NoMatch from "./pages/NoMatch";
+// import SingleThought from './pages/SingleThought';
+// import Profile from './pages/Profile';
+import Signup from "./pages/Signup";
+import GuestPortal from "./pages/GuestPortal";
+import WeddingDetails from "./pages/WeddingDetails";
 
 const client = new ApolloClient({
-  uri: '/graphql'
+  request: (operation) => {
+    const token = localStorage.getItem("id_token");
+
+    operation.setContext({
+      headers: {
+        authorization: token ? `Bearer ${token}` : "",
+      },
+    });
+  },
+  uri: "/graphql",
 });
 
 function App() {
-  const [currentBook, setCurrentBook] = useState('');
-
   return (
     <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
-          <StoreProvider>
-          <Header currentBook={currentBook} />
+          <Header />
           <div className="container">
             <Switch>
-              <Route exact path="/" component={BookList} />
-              <Route
-                exact
-                path="/book/:bookId"
-                component={() => (
-                  <Detail
-                    setCurrentBook={setCurrentBook}
-                    currentBook={currentBook}
-                  />
-                )}
-              />
-              <Route render={() => <h1>404! Wrong Page</h1>} />
+              <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/guestportal" component={GuestPortal} />
+              <Route exact path="/weddingdetails" component={WeddingDetails} />
+              <Route component={NoMatch} />
+           
+              
             </Switch>
           </div>
-          </StoreProvider>
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>

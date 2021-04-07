@@ -6,28 +6,26 @@ const resolvers = {
   Query: {
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate('wedding');
+        const user = await User.findById(context.user._id);
 
         return user;
       }
 
       throw new AuthenticationError('Not logged in');
     },
-    wedding: async (parent, context) =>{
-      if(context.user){
-        const user = await User.findById(context.user._id).populate('wedding');
+    wedding: async (parent, {_id}) =>{
+      
+      const wedding = await Wedding.findById(_id);
 
-        return user.wedding.populate('attendants').populate('meals');
-      }
+      return wedding;
+  
     },
-    meals: async (parent, {_id}, context) => {
-      const user = await User.findById(context.user._id).populate({
-        path: 'wedding',
-        populate: 'meals'
-      })
+    meals: async (parent, {_id}) =>{
+      const wedding = await Wedding.findById(_id);
 
-      return user.wedding.meals;
-    }
+      return wedding.meals;
+    },
+    
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -61,9 +59,9 @@ const resolvers = {
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
-      if (!user) {
-        throw new AuthenticationError('Incorrect credentials');
-      }
+       if (!user) {
+         throw new AuthenticationError('Incorrect credentials');
+       }
 
       const correctPw = await user.isCorrectPassword(password);
 
@@ -73,7 +71,7 @@ const resolvers = {
 
       const token = signToken(user);
 
-      return { token, user };
+      return {  token, user };
     }
   }
 };
