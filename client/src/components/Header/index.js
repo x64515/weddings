@@ -19,7 +19,7 @@ const Header = () => {
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link to="/profile">Me</Link>
+              <Link to="/weddingDetails">Me</Link>
               <a href="/" onClick={logout}>
                 Logout
               </a>
