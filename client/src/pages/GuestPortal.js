@@ -47,8 +47,9 @@ function GuestPortal() {
           <h1 data-testid="h1tag">Will you be attending?</h1>
           <form id="RSVP" onSubmit={handleSubmit}>
             <div className="my-2">
-              <label htmlFor="name">First Name:</label>
               <input
+                className="form-input"
+                placeholder="First Name"
                 type="text"
                 name="firstName"
                 defaultValue={firstName}
@@ -56,8 +57,9 @@ function GuestPortal() {
               />
             </div>
             <div className="my-2">
-              <label htmlFor="name">Last Name:</label>
               <input
+                className="form-input"
+                placeholder="Last Name"
                 type="text"
                 name="lastName"
                 defaultValue={lastName}
@@ -67,6 +69,8 @@ function GuestPortal() {
             <div className="my-2">
               <label htmlFor="foodChoice">Meal:</label>
               <select
+                className="form-input"
+                
                 defaultValue={foodChoice}
                 name="foodChoice"
                 onBlur={handleChange}
@@ -85,7 +89,10 @@ function GuestPortal() {
                 <p className="error-text">{errorMessage}</p>
               </div>
             )}
-            <button data-testid="button" type="submit">
+            <button data-testid="button" className="btn" type="submit">
+              Yes
+            </button>
+            <button data-testid="button" className="btn" type="submit">
               No
             </button>
           </form>
