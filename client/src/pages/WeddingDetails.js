@@ -67,44 +67,53 @@ const WeddingDetails = props => {
         {user ? (
          <div className="App">
          <h1>Wedding Details</h1>
-         <h3>{data.wedding.bride} & Groom</h3>
+         <h3>{user.wedding[0].bride} & {user.wedding[0].groom}</h3>
          <h3>Date:</h3>
-         <p>April 10th, 2021</p>
+         <p>{user.wedding[0].weddingDate}</p>
          <p>5:00 PM</p>
          <h3>Venue:  </h3>
-         <p>Allan House; 1104 San Antonio St, Austin, TX 78701</p>
-         
-   
- 
+         <p>{user.wedding[0].location}</p>
+         <h3>Guests:</h3>
+         {user.wedding[0].attendants.map((attendant) => (
+           <div key={attendant._id}>
+             <p>{attendant.firstName} {attendant.lastName}</p>
+           </div>
+
+         ))}
        <form onSubmit={handleFormSubmit} className= "box"> 
         <h3>Add Guests:</h3>
        <input
          name="firstName"
-         placeholder="Enter Guest First Name"
+         placeholder="First Name"
          value={formState.firstName}
          onChange={handleChange}
        />,
        <input
-     className="ml10"
+         className="ml10"
          name="lastName"
-  placeholder="Enter Guest Last Name"
+          placeholder="Last Name"
          value={formState.lastName}
          onChange={ handleChange}
        />
-    <button className="btn d-block w-100" type="submit">
+          <button className="btn d-block w-100" type="submit">
            Submit
-         </button>
-       
-     
+          </button>
      </form>
+     <h3>Meal Options:</h3>
+         {user.wedding[0].meals.map((meal) => (
+           <div key={meal._id}>
+             <p>{meal.name}</p>
+           </div>
+
+         ))}
      <form onSubmit={handleFormSubmit2} className= "box"> 
-        <h3>Add Guests Meals:</h3>
+        <h3>Add Meal Option:</h3>
        
        <input
      className="ml10"
-         name="meal"
-  placeholder="Enter Guest Meal"
-         value={formState.Meal}
+         name="name"
+  placeholder="Meal Name"
+         value={formState.name}
          onChange={ handleChange}
        />
     <button className="btn d-block w-100" type="submit">
