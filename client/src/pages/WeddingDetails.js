@@ -59,7 +59,9 @@ const WeddingDetails = props => {
   
  
   return (
-    <div className="App">
+    <div className="App form-wrapper">
+      <div  className="form-container">
+        <div className="form-content">
  <h1>Wedding Details</h1>
               <h3>Bride & Groom</h3>
               <h3>Date:</h3>
@@ -77,7 +79,7 @@ const WeddingDetails = props => {
               placeholder="Enter Guest First Name"
               value={formState.firstName}
               onChange={handleChange}
-            />,
+            />
             <input
           className="ml10"
               name="lastName"
@@ -107,6 +109,8 @@ const WeddingDetails = props => {
   
           
           </form>
+          </div>
+        </div>
     </div>
   );
 }
