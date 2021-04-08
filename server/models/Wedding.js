@@ -4,7 +4,7 @@ const Attendant = require('./Attendant');
 
 const weddingSchema = new Schema({
   weddingDate: {
-    type: Date,
+    type: String,
     required: true,
   },
   bride: {

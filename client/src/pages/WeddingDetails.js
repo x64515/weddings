@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/react-hooks";
-import { ADD_ATTENDANT, ADD_MEAL } from "../utils/mutations";
+import { useQuery } from '@apollo/react-hooks';
+import { QUERY_USER } from '../utils/queries';
+import { useMutation } from '@apollo/react-hooks';
+import { ADD_ATTENDANT, ADD_MEAL} from '../utils/mutations';
 
-const WeddingDetails = (props) => {
-  const [formState, setFormState] = useState({
-    name: "",
-    firstName: "",
-    lastName: "",
-  });
-  const [Attendance, { error }] = useMutation(ADD_ATTENDANT);
-  const [Meal, { error2 }] = useMutation(ADD_MEAL);
+const WeddingDetails = props => {
+
+  const [formState, setFormState] = useState({ name:'',firstName:'',lastName:'', });
+  const [Attendance] = useMutation(ADD_ATTENDANT);
+  const [Meal] = useMutation(ADD_MEAL);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -20,15 +19,12 @@ const WeddingDetails = (props) => {
     });
   };
 
-  // update state based on form input changes
-
-  const handleFormSubmit = async (event) => {
+  const handleFormSubmit = async event => {
     event.preventDefault();
 
     try {
-      const { data } = await Attendance({
-        variables: { ...formState },
-      });
+      const  mutationResponse = await Attendance({ variables: {firstName: formState.firstName, lastName: formState.lastName}});
+      console.log(mutationResponse);
     } catch (e) {
       console.error(e);
     }
@@ -43,9 +39,10 @@ const WeddingDetails = (props) => {
     event.preventDefault();
 
     try {
-      const { data } = await Meal({
-        variables: { ...formState },
+      const mutationResponse = await Meal({
+        variables: { name: formState.name}
       });
+      console.log(mutationResponse);
     } catch (e) {
       console.error(e);
     }
@@ -56,59 +53,94 @@ const WeddingDetails = (props) => {
     });
   };
 
-  // handle click event of the Add button
-
+  
+    const { data } = useQuery(QUERY_USER);
+    let user;
+  
+    if(data){
+      user=data.user;
+    
+ 
   return (
-    <div className="App form-wrapper wd-photo">
-      <div className="form-container">
-        <div className="form-content">
-          <h1>Wedding Details</h1>
-          <h3>Bride & Groom</h3>
-          <h3>Date:</h3>
-          <p>April 10th, 2021</p>
-          <p>5:00 PM</p>
-          <h3>Venue: </h3>
-          <p>Allan House; 1104 San Antonio St, Austin, TX 78701</p>
+    <>
+        {user ? (
+          <div className="App form-wrapper wd-photo">
+          <div className="form-container">
+            <div className="form-content">
+         <h1>Wedding Details</h1>
+         <h3>{user.wedding[0].bride} & {user.wedding[0].groom}</h3>
+         <h3>Date:</h3>
+         <p>{user.wedding[0].weddingDate}</p>
+         <p>5:00 PM</p>
+         <h3>Venue:  </h3>
+         <p>{user.wedding[0].location}</p>
+         <h3>Guests:</h3>
+         {user.wedding[0].attendants.map((attendant) => (
+           <div key={attendant._id}>
+             <p>{attendant.firstName} {attendant.lastName}</p>
+           </div>
 
-          
-          <form onSubmit={handleFormSubmit} className="box">
-            <h5>Add Guests:</h5>
-            <input
-              className="form-input"
-              name="firstName"
-              placeholder="Enter Guest First Name"
-              value={formState.firstName}
-              onChange={handleChange}
-            />
-            <input
-              className="ml10 form-input"
-              name="lastName"
-              placeholder="Enter Guest Last Name"
-              value={formState.lastName}
-              onChange={handleChange}
-            />
-            <button className="btn d-block w-100" type="submit">
-              Submit
-            </button>
-          </form>
-          <form onSubmit={handleFormSubmit2} className="box">
-            <h5>Add Guests Meals:</h5>
+         ))}
+       <form onSubmit={handleFormSubmit} className= "box"> 
+        <h3>Add Guests:</h3>
+       <input
+       className="ml10 form-input"
+         name="firstName"
+         placeholder="First Name"
+         value={formState.firstName}
+         onChange={handleChange}
+       />,
+       <input
+         className="ml10 form-input"
+         name="lastName"
+          placeholder="Last Name"
+         value={formState.lastName}
+         onChange={ handleChange}
+       />
+          <button className="btn d-block w-100" type="submit">
+           Submit
+          </button>
+     </form>
+     <h3>Meal Options:</h3>
+         {user.wedding[0].meals.map((meal) => (
+           <div key={meal._id}>
+             <p>{meal.name}</p>
+           </div>
 
-            <input
-              className="ml10 form-input"
-              name="meal"
-              placeholder="Enter Guest Meal"
-              value={formState.Meal}
-              onChange={handleChange}
-            />
-            <button className="btn d-block w-100" type="submit">
-              Submit
-            </button>
-          </form>
-        </div>
+         ))}
+     <form onSubmit={handleFormSubmit2} className= "box"> 
+        <h3>Add Meal Option:</h3>
+       
+       <input
+     className="ml10 form-input"
+         name="name"
+  placeholder="Meal Name"
+         value={formState.name}
+         onChange={ handleChange}
+       />
+    <button className="btn d-block w-100" type="submit">
+           Submit
+         </button>
+
+     
+      </form>
       </div>
-    </div>
-  );
+      </div>
+      </div>
+        ) : null}
+
+
+    </>)
+    }
+    else{
+      return(<h1>Cannot find user data!</h1>)
+    }
+      
+    
+
 };
+
+
+ 
 
 export default WeddingDetails;
