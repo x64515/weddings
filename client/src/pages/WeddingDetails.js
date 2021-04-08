@@ -65,54 +65,58 @@ const WeddingDetails = props => {
   return (
     <>
         {user ? (
-         <div className="App">
-         <h1>Wedding Details</h1>
-         <h3>{data.wedding.bride} & Groom</h3>
-         <h3>Date:</h3>
-         <p>April 10th, 2021</p>
-         <p>5:00 PM</p>
-         <h3>Venue:  </h3>
-         <p>Allan House; 1104 San Antonio St, Austin, TX 78701</p>
-         
-   
- 
-       <form onSubmit={handleFormSubmit} className= "box"> 
-        <h3>Add Guests:</h3>
-       <input
-         name="firstName"
-         placeholder="Enter Guest First Name"
-         value={formState.firstName}
-         onChange={handleChange}
-       />,
-       <input
-     className="ml10"
-         name="lastName"
-  placeholder="Enter Guest Last Name"
-         value={formState.lastName}
-         onChange={ handleChange}
-       />
-    <button className="btn d-block w-100" type="submit">
-           Submit
-         </button>
-       
-     
-     </form>
-     <form onSubmit={handleFormSubmit2} className= "box"> 
-        <h3>Add Guests Meals:</h3>
-       
-       <input
-     className="ml10"
-         name="meal"
-  placeholder="Enter Guest Meal"
-         value={formState.Meal}
-         onChange={ handleChange}
-       />
-    <button className="btn d-block w-100" type="submit">
-           Submit
-         </button>
+         <div className="App form-wrapper wd-photo">
+          <div  className="form-container">
+            <div className="form-content">
+             <h1>Wedding Details</h1>
+             <h3>{data.wedding.bride} & Groom</h3>
+             <h3>Date:</h3>
+             <p>April 10th, 2021</p>
+             <p>5:00 PM</p>
+             <h3>Venue:  </h3>
+             <p>Allan House; 1104 San Antonio St, Austin, TX 78701</p>
 
-     
-      </form>
+
+
+           <form onSubmit={handleFormSubmit} className= "box"> 
+            <h3>Add Guests:</h3>
+           <input
+             name="firstName"
+             placeholder="Enter Guest First Name"
+             value={formState.firstName}
+             onChange={handleChange}
+           />,
+           <input
+         className="ml10"
+             name="lastName"
+        placeholder="Enter Guest Last Name"
+             value={formState.lastName}
+             onChange={ handleChange}
+           />
+        <button className="btn d-block w-100" type="submit">
+               Submit
+             </button>
+
+
+         </form>
+         <form onSubmit={handleFormSubmit2} className= "box"> 
+            <h3>Add Guests Meals:</h3>
+
+           <input
+         className="ml10"
+             name="meal"
+      placeholder="Enter Guest Meal"
+             value={formState.Meal}
+             onChange={ handleChange}
+           />
+        <button className="btn d-block w-100" type="submit">
+               Submit
+             </button>
+
+
+          </form>
+        </div>
+       </div>
       </div>
         ) : null}
 
@@ -126,6 +130,7 @@ const WeddingDetails = props => {
     
 
 };
+
 
  
 
