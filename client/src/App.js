@@ -14,25 +14,26 @@ import NoMatch from "./pages/NoMatch";
 import Signup from "./pages/Signup";
 import GuestPortal from "./pages/GuestPortal";
 import WeddingDetails from "./pages/WeddingDetails";
+import { StoreProvider } from "./utils/GlobalState";
 
 const client = new ApolloClient({
   request: (operation) => {
-    const token = localStorage.getItem("id_token");
-
+    const token = localStorage.getItem('id_token')
     operation.setContext({
       headers: {
-        authorization: token ? `Bearer ${token}` : "",
-      },
-    });
+        authorization: token ? `Bearer ${token}` : ''
+      }
+    })
   },
-  uri: "/graphql",
-});
+  uri: '/graphql',
+})
 
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
+        <StoreProvider>
           <Header />
           <div className="body-container">
             <Switch>
@@ -47,6 +48,7 @@ function App() {
             </Switch>
           </div>
           <Footer />
+          </StoreProvider>
         </div>
       </Router>
     </ApolloProvider>

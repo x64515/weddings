@@ -1,18 +1,19 @@
 import React, { createContext, useContext } from 'react'
-import { useBookReducer } from './reducers'
+import { useWeddingReducer } from './reducers'
 
-const StoreContext = createContext()
+const StoreContext = createContext();
 const {Provider} = StoreContext;
 
 const StoreProvider = ({ value = [], ...props }) => {
-    const [state, dispatch] = useBookReducer({
-            user: {}
+    const [state, dispatch] = useWeddingReducer({
+            wedding: {},
+            
     })
     return <Provider value={[state,dispatch]}{...props}/>
 }
 
 const useStoreContext = () => {
-    return useContext(useStoreContext)
+    return useContext(StoreContext);
 }
 
 export { StoreProvider, useStoreContext }

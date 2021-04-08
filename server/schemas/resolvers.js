@@ -36,10 +36,10 @@ const resolvers = {
     },
     addAttendant: async (parent, args, context) => {
       console.log(context);
-      if (context.user) {
+      if (context.wedding) {
         const guest = await Attendant.create(args);
 
-        await User.findByIdAndUpdate(context.user._id, { $push: { attendants: guest } });
+        await Wedding.findByIdAndUpdate(context.wedding._id, { $push: { attendants: guest } });
 
         return guest;
       }
@@ -47,10 +47,10 @@ const resolvers = {
     },
     addMeal: async(parent, args, context) => {
       console.log(context);
-      if (context.user) {
+      if (context.wedding) {
         const item = await Meal.create(args);
 
-        await Wedding.findByIdAndUpdate(context.user._id, { $push: { meals: item } });
+        await Wedding.findByIdAndUpdate(context.wedding._id, { $push: { meals: item } });
 
         return item;
       }
