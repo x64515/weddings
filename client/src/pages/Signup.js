@@ -38,11 +38,10 @@ const Signup = () => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-md-6">
-        <div className="card">
-          <h4 className="card-header">Sign Up</h4>
-          <div className="card-body">
+    <div className="form-wrapper su-photo">
+      <div  className="form-container">
+        <div className="form-content">
+          <h2>Sign Up</h2>
             <form onSubmit={handleFormSubmit}>
               <input
                 className="form-input"
@@ -89,7 +88,6 @@ const Signup = () => {
           </div>
         </div>
       </div>
-    </main>
   );
 };
 
