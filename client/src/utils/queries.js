@@ -20,6 +20,8 @@ export const QUERY_USER = gql`
         attendants {
           _id
           firstName
+          lastName
+          rsvp
         }
       }
     }
