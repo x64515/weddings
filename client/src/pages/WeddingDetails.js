@@ -136,6 +136,7 @@ const WeddingDetails = props => {
 
 };
 
+
  
 
 export default WeddingDetails; 
