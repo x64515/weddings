@@ -59,7 +59,7 @@ const WeddingDetails = props => {
   
  
   return (
-    <div className="App form-wrapper">
+    <div className="App form-wrapper wd-photo">
       <div  className="form-container">
         <div className="form-content">
  <h1>Wedding Details</h1>
@@ -110,7 +110,7 @@ const WeddingDetails = props => {
           
           </form>
           </div>
-        </div>
+          </div>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+/* GLOBAL STYLES */
 main {
   margin: 0 auto;
   max-width: 90%;
@@ -73,7 +74,7 @@ h5 {
 h6 {
   font-size: 1rem;
 }
-
+ 
 p {
   font-size: 1.1rem;
   margin-top: 0;
@@ -85,7 +86,31 @@ a {
   color: var(--light);
 }
 
-/* HEADER STYLES */
+li {
+  list-style: none;
+}
+
+/* BACKGROUND IMAGES */
+.wd-photo {
+  background-image: url("./assets/heart.jpg");
+}
+
+.gp-photo {
+  background-image: url("./assets/cheersing.jpg");
+}
+
+.li-photo {
+  background-image: url("./assets/tables.jpg");
+}
+
+.su-photo {
+  background-image: url("./assets/beach.jpg");
+}
+
+.hp-photo {
+  background-image: url("./assets/home-cover.jpg");
+}
+/* HEADER/NAV STYLES */
 header {
   background: var(--dark);
   width: 100%;
@@ -101,6 +126,18 @@ header ul {
   display: flex;
   justify-content: flex-end;
   font-size: 2rem;
+}
+
+nav {
+  width: 100%;
+  justify-content: right;
+}
+nav a:hover {
+  text-decoration: none;
+}
+
+nav li {
+  cursor: pointer;
 }
 
 .login {
@@ -157,6 +194,63 @@ button {
   position: relative;
 }
 
+/* FORM STYLES */
+.form-wrapper {
+  /* background-image: url("./assets/heart.jpg"); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+  
+}
+
+.form-container{
+  width: 100%;
+  height: 100%;
+  background-image:
+  linear-gradient(to left, 
+  rgba(0, 48, 73, 0.4),
+  rgba(245, 246, 252, 0.3), 
+  rgba(162, 135, 224, 0.4));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.form-content {
+  border-radius: 5px 5px 5px 5px;
+  background: rgba(228, 218, 218, 0.6);
+  padding: 30px;
+  width: 90%;
+  max-width: 250px;
+  position: relative;
+  padding: 0px;
+  box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+  text-align: center;
+  
+}
+/* .form-label,
+.form-input,
+.form-textarea {
+  display: block;
+}
+
+.form-label {
+  font-size: 1.2rem;
+  margin: 0.625rem 0 0.25rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.2rem 0;
+  font-size: 1.2rem;
+  border: 2px solid var(--dark);
+  border-radius: var(--border-radius);
+} */
+
 /* FOOTER STYLES */
 .copy {
   margin: 15px
@@ -194,21 +288,6 @@ input {
 input:focus {
   border: 1px solid var(--secondary);
   box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5);
-}
-
-li {
-  list-style: none;
-}
-nav {
-  width: 100%;
-  justify-content: right;
-}
-nav a:hover {
-  text-decoration: none;
-}
-
-nav li {
-  cursor: pointer;
 }
 
 textarea {
@@ -297,59 +376,3 @@ textarea {
   cursor: pointer;
 }
 
-/* LOGIN/SIGNUP FORM STYLES */
-.form-wrapper {
-  background-image: url("./assets/heart.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100%;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
-  
-}
-
-.form-container{
-  width: 100%;
-  height: 100%;
-  background-image:
-  linear-gradient(to left, 
-  rgba(0, 48, 73, 0.4),
-  rgba(245, 246, 252, 0.3), 
-  rgba(162, 135, 224, 0.4));
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
-
-.form-content {
-  border-radius: 5px 5px 5px 5px;
-  background: rgba(228, 218, 218, 0.6);
-  padding: 30px;
-  width: 90%;
-  max-width: 250px;
-  position: relative;
-  padding: 0px;
-  box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
-  text-align: center;
-  
-}
-/* .form-label,
-.form-input,
-.form-textarea {
-  display: block;
-}
-
-.form-label {
-  font-size: 1.2rem;
-  margin: 0.625rem 0 0.25rem;
-}
-
-.form-input {
-  width: 100%;
-  padding: 0.75rem;
-  margin: 0.2rem 0;
-  font-size: 1.2rem;
-  border: 2px solid var(--dark);
-  border-radius: var(--border-radius);
-} */

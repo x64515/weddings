@@ -41,7 +41,7 @@ function GuestPortal() {
   };
 
   return (
-    <section className="form-wrapper">
+    <section className="form-wrapper gp-photo">
       <div className="form-container">
         <div className="form-content">
           <h1 data-testid="h1tag">Will you be attending?</h1>

@@ -40,7 +40,7 @@ const Login = props => {
   };
 
   return (
-    <div className="form-wrapper">
+    <div className="form-wrapper li-photo">
       <div  className="form-container">
         <div className="form-content">
           <h2>Login</h2>
