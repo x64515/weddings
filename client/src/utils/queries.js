@@ -2,8 +2,8 @@ import gql from "graphql-tag";
 
 
 export const QUERY_USER = gql`
-  query user($_id: ID!) {
-    user(_id: $_id) {
+{
+    user {
       _id
       firstName
       lastName
@@ -23,8 +23,7 @@ export const QUERY_USER = gql`
           firstName
         }
       }
-  }
-  }
+    }
 }
 `;
 

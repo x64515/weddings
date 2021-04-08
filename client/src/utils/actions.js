@@ -1,1 +1,1 @@
-
+export const UPDATE_WEDDING = "UPDATE_WEDDING";
