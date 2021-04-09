@@ -26,16 +26,14 @@ function HomePage() {
   }
   else{
   return (
-    <section className="homepage form-wrapper">
-     <div className="form-container">
-            <div className="form-content">
+    <section className="homepage">
+     <div className="">     
         <button className="my-2">
           <Link to="/guestportal">Guest Portal</Link>
         </button>
         <button className="my-2"> 
           <Link to="/signup">Signup</Link> 
-        </button>
-      </div> 
+        </button> 
       </div> 
     </section>
   );

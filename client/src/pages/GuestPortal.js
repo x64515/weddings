@@ -75,10 +75,10 @@ function GuestPortal() {
                 name="foodChoice"
                 onBlur={handleChange}
               >
-                <option value="grapefruit">Grapefruit</option>
-                <option value="lime">Lime</option>
-                <option value="coconut">Coconut</option>
-                <option value="mango">Mango</option>
+                <option value="grapefruit">Steak</option>
+                <option value="lime">Chicken</option>
+                <option value="coconut">Seafood</option>
+                <option value="mango">Vegetarian</option>
               </select>
             </div>
             <div className="my-2">
