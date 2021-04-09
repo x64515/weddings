@@ -63,7 +63,7 @@ function GuestPortal() {
             onBlur={handleChange}
           />
         </div>
-      </div>
+      </form>
     </section>
   );
 }

@@ -5,7 +5,10 @@ import  Auth  from '../utils/auth';
 function HomePage() {
   if(Auth.loggedIn()){
   return (
-    <section className="my-5">
+    <section className="my-5 form-wrapper hp-photo">
+    
+          <div className="form-container">
+            <div className="form-content">
       {/* <h1 id="HomePage">My Wedding</h1> */}
       {/* <img
         src={coverImage}
@@ -13,22 +16,26 @@ function HomePage() {
         style={{ width: "100%" }}
         alt="cover"
       /> */}
-      <div className="my-2">
+      <button className="my-2">
         <Link to="/weddingdetails">Wedding Details</Link> 
+      </button>
+      </div>
       </div>
     </section>
   );
   }
   else{
   return (
-    <section className="homepage">
-      <div>
+    <section className="homepage form-wrapper">
+     <div className="form-container">
+            <div className="form-content">
         <button className="my-2">
           <Link to="/guestportal">Guest Portal</Link>
         </button>
         <button className="my-2"> 
           <Link to="/signup">Signup</Link> 
         </button>
+      </div> 
       </div> 
     </section>
   );
