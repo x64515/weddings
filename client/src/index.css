@@ -177,7 +177,10 @@ button {
 
 /* HOMEPAGE STYLES */
 .homepage {
-  background-image: url("./assets/home-cover.jpg");
+  background-image: url("./assets/home-cover.jpg"), linear-gradient(to left, 
+  rgba(0, 48, 73, 0.4),
+  rgba(245, 246, 252, 0.3), 
+  rgba(162, 135, 224, 0.4));;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -205,12 +208,12 @@ button {
   grid-template-columns: auto auto auto;
   gap: 10px;
   background: rgba(228, 218, 218, 0.6);
+  margin: 15px 15px;
 }
 
 .one {
   grid-column: 1;
-  grid-row: 1;
-  
+  grid-row: 1;  
 }
 
 .two {

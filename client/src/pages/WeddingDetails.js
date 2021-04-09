@@ -72,72 +72,73 @@ const WeddingDetails = (props) => {
         {user ? (
           <div className="App wrapper wd-photo">
             
-              <div className="one">
-                <h1>Wedding Details</h1>
-                <h3>
-                  {user.wedding[0].bride} & {user.wedding[0].groom}
-                </h3>
-                <h3>Date:</h3>
-                <p>{user.wedding[0].weddingDate}</p>
-                <p>5:00 PM</p>
-                <h3>Venue: </h3>
-                <p>{user.wedding[0].location}</p>
-                </div>
-                <div className="two">
-                <h3>Guests:</h3>
-                {user.wedding[0].attendants.map((attendant) => (
-                  <div key={attendant._id}>
-                    <p>
-                      {attendant.firstName} {attendant.lastName}
-                    </p>
-                  </div>
-                ))}
-                
-                
-                <form onSubmit={handleFormSubmit} className="box">
-                  <h3>Add Guests:</h3>
-                  <input
-                    className="ml10 form-input"
-                    name="firstName"
-                    placeholder="First Name"
-                    value={formState.firstName}
-                    onChange={handleChange}
-                  />
-                  ,
-                  <input
-                    className="ml10 form-input"
-                    name="lastName"
-                    placeholder="Last Name"
-                    value={formState.lastName}
-                    onChange={handleChange}
-                  />
-                  <button className="btn d-block w-100" type="submit">
-                    Submit
-                  </button>
-                </form>
-                </div>
-                <div className="three">
-                <h3>Meal Options:</h3>
-                {user.wedding[0].meals.map((meal) => (
-                  <div key={meal._id}>
-                    <p>{meal.name}</p>
-                  </div>
-                ))}
-                <form onSubmit={handleFormSubmit2} className="box">
-                  <h3>Add Meal Option:</h3>
-
-                  <input
-                    className="ml10 form-input"
-                    name="name"
-                    placeholder="Meal Name"
-                    value={formState.name}
-                    onChange={handleChange}
-                  />
-                  <button className="btn d-block w-100" type="submit">
-                    Submit
-                  </button>
-                </form>
+            <div className="one">
+              
+              <h1>Wedding Details</h1>
+              <h3>
+                {user.wedding[0].bride} & {user.wedding[0].groom}
+              </h3>
+              <h3>Date:</h3>
+              <p>{user.wedding[0].weddingDate}</p>
+              <p>5:00 PM</p>
+              <h3>Venue: </h3>
+              <p>{user.wedding[0].location}</p>
+            
             </div>
+            <div className="two">
+              <form onSubmit={handleFormSubmit} className="box">
+                <h3>Add Guests:</h3>
+                <input
+                  className="ml10 form-input"
+                  name="firstName"
+                  placeholder="First Name"
+                  value={formState.firstName}
+                  onChange={handleChange}
+                />
+                ,
+                <input
+                  className="ml10 form-input"
+                  name="lastName"
+                  placeholder="Last Name"
+                  value={formState.lastName}
+                  onChange={handleChange}
+                />
+                <button className="btn d-block w-100" type="submit">
+                  Submit
+                </button>
+              </form>
+              <h3>Guests:</h3>
+              {user.wedding[0].attendants.map((attendant) => (
+                <div key={attendant._id}>
+                  <p>
+                    {attendant.firstName} {attendant.lastName}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="three">
+              <form onSubmit={handleFormSubmit2} className="box">
+                <h3>Add Meal Option:</h3>
+
+                <input
+                  className="ml10 form-input"
+                  name="name"
+                  placeholder="Meal Name"
+                  value={formState.name}
+                  onChange={handleChange}
+                />
+                <button className="btn d-block w-100" type="submit">
+                  Submit
+                </button>
+              </form>
+              <h3>Meal Options:</h3>
+              {user.wedding[0].meals.map((meal) => (
+                <div key={meal._id}>
+                  <p>{meal.name}</p>
+                </div>
+              ))}
+            </div>
+            
           </div>
         ) : null}
       </>
