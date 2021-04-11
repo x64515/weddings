@@ -280,12 +280,12 @@ button {
 
 /* FOOTER STYLES */
 .copy {
-  margin: 15px
+  margin: 1px
 }
 
 .footer-wrapper {
   display: flex;
-  align-items: center;
+  align-items: left;
   justify-content: center;
   text-align: center;
   padding-top: 40px;
@@ -401,5 +401,10 @@ textarea {
   height: 300px;
   margin-bottom: 50px;
   cursor: pointer;
+}
+.developers a {
+ color:var(--dark);
+ text-align: inherit;
+ margin: 25px 5px 5px 5px
 }
 
