@@ -408,3 +408,8 @@ textarea {
   cursor: pointer;
 }
 
+.developers a {
+  color:var(--dark);
+  text-align: inherit;
+  margin: 25px 5px 5px 5px
+ }
