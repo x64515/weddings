@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { validateEmail } from "../utils/helpers";
+// import { validateEmail } from "../utils/helpers";
 
 function GuestPortal() {
   const [formState, setFormState] = useState({
@@ -10,7 +10,7 @@ function GuestPortal() {
   });
 
   const [errorMessage, setErrorMessage] = useState("");
-  const { name, email } = formState;
+  const { firstName, lastName, foodChoice } = formState;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,14 +20,14 @@ function GuestPortal() {
   };
 
   const handleChange = (e) => {
-    if (e.target.name === "email") {
-      const isValid = validateEmail(e.target.value);
-      if (!isValid) {
-        setErrorMessage("Your email is invalid.");
-      } else {
-        setErrorMessage("");
-      }
-    } else {
+    if (e.target.name === "name") {
+      // const isValid = validateEmail(e.target.value);
+      //   if (!isValid) {
+      //     setErrorMessage("Your email is invalid.");
+      //   } else {
+      //     setErrorMessage("");
+      //   }
+      // } else {
       if (!e.target.value.length) {
         setErrorMessage(`${e.target.name} is required.`);
       } else {
@@ -41,48 +41,63 @@ function GuestPortal() {
   };
 
   return (
-    <section>
-      <h1 data-testid="h1tag">Contact me</h1>
-      <form id="RSVP" onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">First Name:</label>
-          <input
-            type="text"
-            name="name"
-            defaultValue={name}
-            onBlur={handleChange}
-          />
+    <section className="form-wrapper gp-photo">
+      <div className="form-container">
+        <div className="form-content">
+          <h1 data-testid="h1tag">Will you be attending?</h1>
+          <form id="RSVP" onSubmit={handleSubmit}>
+            <div className="my-2">
+              <input
+                className="form-input"
+                placeholder="First Name"
+                type="text"
+                name="firstName"
+                defaultValue={firstName}
+                onBlur={handleChange}
+              />
+            </div>
+            <div className="my-2">
+              <input
+                className="form-input"
+                placeholder="Last Name"
+                type="text"
+                name="lastName"
+                defaultValue={lastName}
+                onBlur={handleChange}
+              />
+            </div>
+            <div className="my-2">
+              <label htmlFor="foodChoice">Meal:</label>
+              <select
+                className="form-input"
+                
+                defaultValue={foodChoice}
+                name="foodChoice"
+                onBlur={handleChange}
+              >
+                <option value="grapefruit">Steak</option>
+                <option value="lime">Chicken</option>
+                <option value="coconut">Seafood</option>
+                <option value="mango">Vegetarian</option>
+              </select>
+            </div>
+            <div className="my-2">
+              <label htmlFor="object">Do you object?</label>
+            </div>
+            {errorMessage && (
+              <div>
+                <p className="error-text">{errorMessage}</p>
+              </div>
+            )}
+            <button data-testid="button" className="btn" type="submit">
+              Yes
+            </button>
+            <button data-testid="button" className="btn" type="submit">
+              No
+            </button>
+          </form>
         </div>
-        <div>
-          <label htmlFor="name">Last Name:</label>
-          <input
-            type="text"
-            name="name"
-            defaultValue={name}
-            onBlur={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="foodChoice">Meal:</label>
-          <input
-            type="text"
-            name="foodChoice"
-            defaultValue={name}
-            onBlur={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="object">Do you object?</label>
-        </div>
-        {errorMessage && (
-          <div>
-            <p className="error-text">{errorMessage}</p>
-          </div>
-        )}
-        <button data-testid="button" type="submit">
-          No
-        </button>
-      </form>
+      </div>
     </section>
   );
 }

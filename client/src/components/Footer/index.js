@@ -2,8 +2,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="w-100 mt-auto bg-secondary p-4">
-      <div className="container">&copy; Xavier Julia Daniela Mike Lewis </div>
+    <footer className="footer-wrapper">
+      <div className="copy">&copy; Xavier Julia Lewis Daniela Mike </div>
     </footer>
   );
 };

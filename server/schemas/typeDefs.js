@@ -42,14 +42,16 @@ const typeDefs = gql`
     meals(_id: ID!): [Meal]
     user: User
     wedding(_id: ID!): Wedding
+    attendants: [Attendant]
   }
 
   type Mutation{
     addMeal(name: String!): Meal
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addAttendant(firstName: String!, lastName: String!, foodChoice: String!): Attendant
+    addAttendant(firstName: String!, lastName: String!): Attendant
     updateUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    addWedding(weddingDate: String!,bride: String!,groom: String, location: String): Wedding
   }
 `;
 

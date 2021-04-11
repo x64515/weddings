@@ -1,100 +1,59 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
-export const QUERY_THOUGHTS = gql`
-  query thoughts($username: String) {
-    thoughts(username: $username) {
-      _id
-      thoughtText
-      createdAt
-      username
-      reactionCount
-      reactions {
-        _id
-        createdAt
-        username
-        reactionBody
-      }
-    }
-  }
-`;
-
-export const QUERY_THOUGHT = gql`
-  query thought($id: ID!) {
-    thought(_id: $id) {
-      _id
-      thoughtText
-      createdAt
-      username
-      reactionCount
-      reactions {
-        _id
-        createdAt
-        username
-        reactionBody
-      }
-    }
-  }
-`;
 
 export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
+{
+    user {
       _id
-      username
+      firstName
+      lastName
       email
-      friendCount
-      friends {
+      wedding{
         _id
-        username
-      }
-      thoughts {
-        _id
-        thoughtText
-        createdAt
-        reactionCount
-      }
-    }
-  }
-`;
-
-export const QUERY_ME = gql`
-  {
-    me {
-      _id
-      username
-      email
-      friendCount
-      thoughts {
-        _id
-        thoughtText
-        createdAt
-        reactionCount
-        reactions {
+        weddingDate
+        bride
+        groom
+        location
+        meals{
           _id
-          createdAt
-          reactionBody
-          username
+          name
+        }
+        attendants{
+          _id
+          firstName
+          lastName
+          rsvp
         }
       }
-      friends {
-        _id
-        username
-      }
     }
+}
+`;
+
+export const QUERY_WEDDING = gql`
+  query wedding($_id:ID!){
+    wedding(_id: $_id){
+    _id
+    weddingDate
+    bride
+    groom
+    attendants{
+      firstName
+      lastName
+      rsvp
+      foodChoice
+    }
+    meals{
+      name
+    }
+    }  
   }
 `;
 
-export const QUERY_ME_BASIC = gql`
-  {
-    me {
+export const QUERY_MEALS = gql`
+  query meals($_id:ID!){
+    meals(_id: $_id){
       _id
-      username
-      email
-      friendCount
-      friends {
-        _id
-        username
-      }
+      name
     }
   }
 `;

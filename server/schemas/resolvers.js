@@ -6,12 +6,20 @@ const resolvers = {
   Query: {
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id);
+        const user = await User.findById(context.user._id).populate({
+          path: 'wedding.meals',
+          populate: 'meals'
+        });
 
         return user;
       }
 
       throw new AuthenticationError('Not logged in');
+    },
+    attendants: async() => {
+      const att = await Attendant.find();
+
+      return att;
     },
     wedding: async (parent, {_id}) =>{
       
@@ -35,26 +43,36 @@ const resolvers = {
       return { token, user };
     },
     addAttendant: async (parent, args, context) => {
-      console.log(context);
-      if (context.user) {
         const guest = await Attendant.create(args);
+        const user = await User.findById(context.user._id).populate('wedding');
 
-        await User.findByIdAndUpdate(context.user._id, { $push: { attendants: guest } });
+        await Wedding.findByIdAndUpdate(user.wedding[0]._id, { $push: { attendants: guest}});
+        await User.findByIdAndUpdate(context.user._id);
 
         return guest;
-      }
-      throw new AuthenticationError('Not logged in');
+      
     },
     addMeal: async(parent, args, context) => {
-      console.log(context);
+      console.log(context.user);
       if (context.user) {
         const item = await Meal.create(args);
-
-        await Wedding.findByIdAndUpdate(context.user._id, { $push: { meals: item } });
+        const user = await User.findById(context.user._id);
+        await Wedding.findByIdAndUpdate(user.wedding[0]._id, { $push: { meals: item } });
+        await User.findByIdAndUpdate(context.user._id);
 
         return item;
       }
       throw new AuthenticationError('Not logged in');
+    },
+    addWedding: async(parent, args, context) => {
+      console.log(context.user);
+      if(context.user){
+        const newWedding = await Wedding.create(args);
+
+        await User.findByIdAndUpdate(context.user._id, { $push: { wedding: newWedding} });
+
+        return newWedding;
+      }
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
