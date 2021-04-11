@@ -413,3 +413,9 @@ textarea {
   text-align: inherit;
   margin: 25px 5px 5px 5px
  }
+
+ /*  MEDIA QUERIES */
+
+ @media all and (max-width: 500px) {
+   
+}
