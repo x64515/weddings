@@ -209,6 +209,8 @@ button {
   gap: 10px;
   background: rgba(228, 218, 218, 0.6);
   margin: 15px 15px;
+  border: 2px solid var(--dark);
+  border-radius: 5px 5px 5px 5px;
 }
 
 .one {
