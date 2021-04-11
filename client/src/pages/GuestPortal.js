@@ -4,13 +4,14 @@ import React, { useState } from "react";
 
 function GuestPortal() {
   const [formState, setFormState] = useState({
+    wedding: "not selected",
     firstName: "",
     lastName: "",
     foodChoice: "not selected",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
-  const { firstName, lastName, foodChoice } = formState;
+  const { wedding, firstName, lastName, foodChoice } = formState;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,63 +42,28 @@ function GuestPortal() {
   };
 
   return (
-    <section className="form-wrapper gp-photo">
-      <div className="form-container">
-        <div className="form-content">
-          <h1 data-testid="h1tag">Will you be attending?</h1>
-          <form id="RSVP" onSubmit={handleSubmit}>
-            <div className="my-2">
-              <input
-                className="form-input"
-                placeholder="First Name"
-                type="text"
-                name="firstName"
-                defaultValue={firstName}
-                onBlur={handleChange}
-              />
-            </div>
-            <div className="my-2">
-              <input
-                className="form-input"
-                placeholder="Last Name"
-                type="text"
-                name="lastName"
-                defaultValue={lastName}
-                onBlur={handleChange}
-              />
-            </div>
-            <div className="my-2">
-              <label htmlFor="foodChoice">Meal:</label>
-              <select
-                className="form-input"
-                
-                defaultValue={foodChoice}
-                name="foodChoice"
-                onBlur={handleChange}
-              >
-                <option value="grapefruit">Steak</option>
-                <option value="lime">Chicken</option>
-                <option value="coconut">Seafood</option>
-                <option value="mango">Vegetarian</option>
-              </select>
-            </div>
-            <div className="my-2">
-              <label htmlFor="object">Do you object?</label>
-            </div>
-            {errorMessage && (
-              <div>
-                <p className="error-text">{errorMessage}</p>
-              </div>
-            )}
-            <button data-testid="button" className="btn" type="submit">
-              Yes
-            </button>
-            <button data-testid="button" className="btn" type="submit">
-              No
-            </button>
-          </form>
+    <section className="flex-row justify-center mb-4">
+      <h1 data-testid="h1tag">Will you be attending?</h1>
+      <form id="RSVP" onSubmit={handleSubmit}>
+        <div className="my-2">
+          <label htmlFor="wedding">Event?</label>
+          <select defaultValue={wedding} name="wedding" onBlur={handleChange}>
+            <option value="Selena Gomez">Selena Gomez</option>
+            <option value="beyonce">beyonce</option>
+            <option value="Rick James">Rick James</option>
+            <option value="Justin Bieber">Justin Bieber</option>
+          </select>
         </div>
-      </div>
+        <div className="my-2">
+          <label htmlFor="name">First Name:</label>
+          <input
+            type="text"
+            name="firstName"
+            defaultValue={firstName}
+            onBlur={handleChange}
+          />
+        </div>
+      </form>
     </section>
   );
 }
