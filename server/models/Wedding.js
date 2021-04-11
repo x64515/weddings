@@ -20,7 +20,7 @@ const weddingSchema = new Schema({
       type: String,
       required: true,
   },
-  meals: [Meal.schema],  
+  meals: [Meal.schema]  
 });
 
 const Wedding = model('Wedding', weddingSchema);
