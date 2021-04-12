@@ -209,21 +209,26 @@ button {
   gap: 10px;
   background: rgba(228, 218, 218, 0.6);
   margin: 15px 15px;
+  border: 2px solid var(--dark);
+  border-radius: 5px 5px 5px 5px;
 }
 
 .one {
   grid-column: 1;
   grid-row: 1;  
+  margin-left: 5px;
 }
 
 .two {
   grid-column: 2;
   grid-row: 1;
+  margin-left: 5px;
 }
 
 .three {
   grid-column: 3;
   grid-row: 1;
+  margin-left: 5px;
 }
 /* FORM STYLES */
 .form-wrapper {
@@ -275,6 +280,7 @@ button {
  .form-input {
   padding: 0.75rem;
   margin: 0.5rem 0.5rem;
+  max-width: 225px;
   font-size: 1.2rem;
   border: 2px solid var(--dark);
   border-radius: var(--border-radius);
@@ -283,12 +289,12 @@ button {
 
 /* FOOTER STYLES */
 .copy {
-  margin: 15px
+  margin: 1px
 }
 
 .footer-wrapper {
   display: flex;
-  align-items: center;
+  align-items: left;
   justify-content: center;
   text-align: center;
   padding-top: 40px;
@@ -405,4 +411,68 @@ textarea {
   margin-bottom: 50px;
   cursor: pointer;
 }
+.developers a {
+ color:var(--dark);
+ text-align: inherit;
+ margin: 25px 5px 5px 5px
+}
 
+.developers a {
+  color:var(--dark);
+  text-align: inherit;
+  margin: 25px 5px 5px 5px
+ }
+
+ /*  MEDIA QUERIES */
+
+ /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
+ @media screen and (max-width: 980px) {
+   
+}
+
+
+/* MEDIA QUERY FOR TABLETS AND SMALLER */
+@media screen and (max-width: 768px) {
+ li {
+   padding-right: 10px;
+   margin-top: 5px;
+   font-size: 30px;
+ }
+
+}
+
+
+/* MEDIA QUERY FOR MOBILE PHONES AND SMALLER */
+@media screen and (max-width: 575px) {
+  
+  .homepage {
+    width: fit-content;
+  }
+
+  .homepage div {
+    margin-left: 0px;
+  }
+  /* wedding details */
+  .two {
+    grid-column: 1;
+    grid-row: 2;
+    
+  }
+
+  .three {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .wrapper {
+    height: fit-content;
+  }
+
+  footer {
+    margin-top: 850px;
+  }
+
+  li {
+    font-size: 20px;
+  }
+}
