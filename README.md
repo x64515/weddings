@@ -7,7 +7,7 @@ Weddings.com is an easy way to organize your wedding invites and meals. This web
 NPM install, NPM start 
 
 # Screenshot 
-![Test Image 1](https://ibb.co/WG7sxPS)
+![Test Image 1](https://i.imgur.com/Bvtw4Nx.png)
 
 
  
