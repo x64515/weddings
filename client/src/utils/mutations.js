@@ -9,17 +9,17 @@ export const LOGIN_USER = gql`
         firstName
         lastName
         email
-        wedding{
+        wedding {
           _id
           weddingDate
           bride
           groom
           location
-          meals{
+          meals {
             _id
             name
           }
-          attendants{
+          attendants {
             _id
             firstName
             lastName
@@ -32,8 +32,18 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-    addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+  mutation addUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+  ) {
+    addUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+    ) {
       token
       user {
         _id
@@ -45,23 +55,55 @@ export const ADD_USER = gql`
   }
 `;
 
-
+export const ADD_WEDDING = gql`
+  mutation addWedding(
+    $weddingDate: String!
+    $bride: String!
+    $groom: String!
+    $location: String!
+  ) {
+    addWedding(
+      weddingDate: $weddingDate
+      bride: $bride
+      groom: $groom
+      location: $location
+    ) {
+      wedding {
+        _id
+        weddingDate
+        bride
+        groom
+        location
+        attendants {
+          _id
+          firstName
+          lastName
+          rsvp
+        }
+        meals {
+          _id
+          name
+        }
+      }
+    }
+  }
+`;
 
 export const ADD_ATTENDANT = gql`
-mutation addAttendant($firstName: String!, $lastName: String!){
-  addAttendant(firstName: $firstName, lastName: $lastName) {
-    _id
-    firstName
-    lastName
+  mutation addAttendant($firstName: String!, $lastName: String!) {
+    addAttendant(firstName: $firstName, lastName: $lastName) {
+      _id
+      firstName
+      lastName
+    }
   }
-}`;
+`;
 
 export const ADD_MEAL = gql`
-mutation addMeal($name: String!){
-  addMeal(name: $name) {
-    _id
-    name
+  mutation addMeal($name: String!) {
+    addMeal(name: $name) {
+      _id
+      name
+    }
   }
-}`;
-
-
+`;
